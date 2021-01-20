@@ -78,20 +78,28 @@
 .skipButton {
     transform: rotate(180deg);
 }
-.valume {
+.volume {
     position: absolute;
     right: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 200px;
+}
+.volume img {
+    cursor: none;
 }
 .volume-range {
+    z-index: 100;
+    display: none;
     -webkit-appearance: none;
     background: black;
     border-radius: 100px;
     height: 5px;
+    width: 120px;
     position: absolute;
     transform: rotate(-90deg);
+    outline: none;
 }
 .volume-range::-webkit-slider-thumb {
     -webkit-appearance: none;
