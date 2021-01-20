@@ -1,0 +1,2 @@
+# MusicApp
+Simple js project
