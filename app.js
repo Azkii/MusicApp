@@ -104,4 +104,26 @@ window.addEventListener('load', () => {
         volume.style.display = "";
         speakerIcon.style.opacity = "";
     });
-})
+    //stop/start rotation manually
+    circleContainer.addEventListener("click", () => {
+        const option = document.querySelector(".hoverCircle");
+        if (option.children[0].name == "play") {
+            Player.circle.style.animation = "";
+            option.children[0].src = "/icons/pause.svg";
+            option.children[0].name = "pause";
+            option.style.display = "flex";
+            setTimeout(() => {
+                option.style.display = "";
+            },300)
+        }
+        else {
+            Player.circle.style.animation = `rotation 20s infinite linear`;
+            option.children[0].src = "/icons/play.svg";
+            option.children[0].name = "play";
+            option.style.display = "flex";
+            setTimeout(() => {
+                option.style.display = "";
+            },300)
+        }
+    });
+});

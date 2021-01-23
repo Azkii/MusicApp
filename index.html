@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MUSIC APP..</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="library.css">
 </head>
 <body>
     <article class="app-article">
@@ -12,11 +13,45 @@
             <p class="type">Indie</p>
             <p class="library">Library</p>
         </section>
+        <!--In progress-->
+        <section class="libraryElements">
+            <h1>Library</h1>
+            <div class="library-types">
+                <p class="songs">Songs</p>
+                <p class="playlists">Playlist</p>
+            </div>
+            <div class="playlist-container">
+                <div class="playlist-component">
+                    <img src="/icons/music.svg" class="playlist-image" alt="playlistImage">
+                    <h1 class="playlist-title">Abrac</h1>
+                    <p class="playlist-counter">12 songs</p>
+                </div>
+                <div class="playlist-component">
+                    <img src="/icons/music.svg" class="playlist-image" alt="playlistImage">
+                    <h1 class="playlist-title">Hifi</h1>
+                    <p class="playlist-counter">42 songs</p>
+                </div>
+                <div class="playlist-component">
+                    <img src="/icons/music.svg" class="playlist-image" alt="playlistImage">
+                    <h1 class="playlist-title">Green Apple</h1>
+                    <p class="playlist-counter">4 songs</p>
+                </div>
+                <div class="addPlaylist">
+                    +
+                </div>
+            </div>
+        </section>
+        <!--end-->
         <section class="player-section">
-            <img class="circle"></img>
+            <div class="circle-container">
+                <div class="hoverCircle">
+                    <img class="stopRotation" name="play" alt="play/stop">
+                </div>
+                <img class="circle"></img>
+            </div>
             <div class="music-info">
-                <h1 class="music-title">Yasuo main</h1>
-                <p class="music-author">Open mid</p>
+                <h1 class="music-title">Seiin</h1>
+                <p class="music-author">Seiin</p>
             </div>
             <div class="player-interface">
                 <div class="player-controls">
@@ -32,6 +67,7 @@
             </div>
         </section>
     </article>
+    <script src="library.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
