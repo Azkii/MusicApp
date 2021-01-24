@@ -65,7 +65,6 @@ class MusicApp {
     }
 }
 //////JUST TO TEST ON ONE SONG "LOAD"/////// will be replaced in future with object which contains playlist
-window.addEventListener('load', () => {
     //get data
     let song = new Audio(songs[0].url);
     let circleBcg = songs[0].photo;
@@ -126,4 +125,3 @@ window.addEventListener('load', () => {
             },300)
         }
     });
-});

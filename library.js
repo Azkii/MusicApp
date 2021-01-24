@@ -4,6 +4,9 @@ const songsBtn = document.querySelector(".songs");
 const playlistsBtn = document.querySelector(".playlists");
 const libraryContainer = document.querySelector(".playlist-container");
 //section 2
+window.addEventListener("load", () => {
+    pushSongsToLibrary();
+});
 libraryBtn.addEventListener("click", () => {
     const library = document.querySelector(".libraryElements");
     if (library.style.height === "") {
@@ -11,14 +14,21 @@ libraryBtn.addEventListener("click", () => {
     }
     else {
         library.style.height = "";
-        libraryContainer.innerHTML = "";
     }
 });
-songsBtn.addEventListener("click", () => {
-    console.log("test1");
+songsBtn.addEventListener("click", (e) => {
+    if(songsBtn.classList[1] !== "clicked"){
+        checkBtn(e);
+        libraryContainer.innerHTML = "";
+        pushSongsToLibrary();
+    }
 });
-playlistsBtn.addEventListener("click", () => {
-    console.log("test2");
+playlistsBtn.addEventListener("click", (e) => {
+    if(playlistsBtn.classList[1] !== "clicked"){
+        checkBtn(e);
+        libraryContainer.innerHTML = "";
+        pushPlaylistsToLibrary();
+    }
 });
 //section 3
 const pushSongsToLibrary = () => {
@@ -86,5 +96,20 @@ const pushingPlaylists = (playlistInfo,image,title,counter) => {
     }
     else {
         counter.innerHTML = `${playlistInfo.songs.length} songs`;
+    }
+};
+///check clicked button
+const checkBtn = (e) => {
+    if(e.target.getAttribute("name") === "songs") {
+        playlistsBtn.classList.remove("clicked");
+        songsBtn.classList.add("clicked");
+        songsBtn.style.borderBottom = "5px solid black";
+        playlistsBtn.style.borderBottom = "";
+    }
+    else if (e.target.getAttribute("name") === "playlists") {
+        songsBtn.classList.remove("clicked");
+        playlistsBtn.classList.add("clicked");
+        playlistsBtn.style.borderBottom = "5px solid black";
+        songsBtn.style.borderBottom = "";
     }
 };

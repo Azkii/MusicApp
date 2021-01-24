@@ -34,9 +34,9 @@ const playlists = [
         ],
         photo: "",
     },
-    Lore = {
+    Seiin = {
         type: "playlist",
-        name: "Sejin",
+        name: "Seiin",
         author: "MusicApp",
         songs: [
             songs[1],
