@@ -10,6 +10,7 @@ class MusicApp {
     constructor(song,circle) {
         this.song = song;
         this.circle = circleContainer;
+        this.circle.src = circle;
         this.song.onended = () => {
             //if one song on for
             console.log("song ended");
@@ -18,7 +19,6 @@ class MusicApp {
             //if no queue
                 //empty for now
         };
-        circleContainer.src = circle;
     }
     play() {
         this.song.play();
@@ -67,8 +67,8 @@ class MusicApp {
 //////JUST TO TEST ON ONE SONG "LOAD"/////// will be replaced in future with object which contains playlist
 window.addEventListener('load', () => {
     //get data
-    let song = new Audio('Seiin.mp3');
-    let circleBcg = "/music library/Seiin/img.jpg";
+    let song = new Audio(songs[0].url);
+    let circleBcg = songs[0].photo;
     //assaign new song to a object
     let Player = new MusicApp(song,circleBcg);
     // play or stop music
