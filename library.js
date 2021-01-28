@@ -29,20 +29,28 @@ playlistsBtn.addEventListener("click", (e) => {
         libraryContainer.innerHTML = "";
         pushPlaylistsToLibrary();
     }
+    const playListDesc = document.getElementsByName("playlistOpen");
+    playListDesc.forEach(element => {
+        element.addEventListener("click", (e) => {
+            openPlaylist(e);
+        });
+    });
 });
 //section 3
 const pushSongsToLibrary = () => {
-    songs.forEach(element => {
-        createShell(element);
+    songs.forEach((element,index) => {
+        createShell(element,index);
     });
+    playSingle();
 };
 const pushPlaylistsToLibrary = () => {
-    playlists.forEach(element => {
-        createShell(element);
+    playlists.forEach((element,index) => {
+        createShell(element,index);
     });
+    playPlaylist();
 };
 //shell creating
-const createShell = (Elementinfo) => {
+const createShell = (Elementinfo,index) => {
     //creating box
     const songBox = document.createElement('div');
     songBox.classList.add("playlist-component");
@@ -57,10 +65,10 @@ const createShell = (Elementinfo) => {
     counter.classList.add("playlist-counter");
     //data
     if (Elementinfo.type === "song") {
-        pushingSongs(Elementinfo,image,title,counter,songBox);
+        pushingSongs(Elementinfo,image,title,counter,songBox,index);
     }
     else if (Elementinfo.type === "playlist") {
-        pushingPlaylists(Elementinfo,image,title,counter);
+        pushingPlaylists(Elementinfo,image,title,counter,songBox,index);
     };
     //pushing data
     songBox.appendChild(image);
@@ -68,8 +76,9 @@ const createShell = (Elementinfo) => {
     songBox.appendChild(counter);
     libraryContainer.appendChild(songBox);
 };
-const pushingSongs = (songInfo,image,title,counter) => {
+const pushingSongs = (songInfo,image,title,counter,songBox,index) => {
     //applying data
+    songBox.setAttribute("key",index);
     title.innerHTML = songInfo.name;
     image.src = songInfo.photo;
     //creating and applying data for duration 
@@ -80,8 +89,10 @@ const pushingSongs = (songInfo,image,title,counter) => {
         counter.innerHTML = `${minutes}:${seconds} min`
     }
 };
-const pushingPlaylists = (playlistInfo,image,title,counter) => {
+const pushingPlaylists = (playlistInfo,image,title,counter,songBox,index) => {
     //applying data
+    songBox.setAttribute("name","playlistOpen");
+    songBox.setAttribute("key",index);
     title.innerHTML = playlistInfo.name;
     //checking if photo is declared
     if (playlistInfo.photo === "" || playlistInfo.photo === undefined) {
@@ -111,5 +122,82 @@ const checkBtn = (e) => {
         playlistsBtn.classList.add("clicked");
         playlistsBtn.style.borderBottom = "5px solid black";
         songsBtn.style.borderBottom = "";
+    }
+};
+//test area
+const openPlaylist = (e) => {
+    const object = playlists[e.target.getAttribute("key")];
+
+    const playlistBox = document.createElement('div');
+    playlistBox.classList.add("playlistInfo");
+
+    const playlisth1 = document.createElement('h1');
+    playlisth1.innerHTML = object.name;
+
+    const playlistp = document.createElement('p');
+    playlistp.innerHTML = object.author;
+
+    const songsContainer = document.createElement('div');
+    songsContainer.classList.add("playlistInfo-songsContainer");
+
+    object.songs.forEach(song => {
+        const playlistSong = document.createElement('div');
+        playlistSong.classList.add("playlistInfo-songInfo");
+
+        const songh1 = document.createElement('h1');
+        songh1.innerHTML = song.name;
+
+        const songp = document.createElement('p');
+        songp.innerHTML = song.author;
+
+        const songDesc = document.createElement('div');
+        songDesc.innerHTML = "empty";
+
+        //append data
+        playlistSong.appendChild(songh1);
+        playlistSong.appendChild(songp);
+        playlistSong.appendChild(songDesc);
+        //apend to a container
+        songsContainer.appendChild(playlistSong);
+    });
+    //append components
+    playlistBox.appendChild(playlisth1);
+    playlistBox.appendChild(playlistp);
+    playlistBox.appendChild(songsContainer);
+    document.querySelector(".holder").appendChild(playlistBox);
+};
+//Play single song
+const playSingle = () => {
+    const singleSong = document.querySelectorAll(".playlist-component");
+    singleSong.forEach(element => {
+        element.addEventListener("click", (e) => {
+            Player.stop();
+            document.querySelector(".libraryElements").style.height = "";
+            queue = [songs[e.target.getAttribute("key")]];
+            Player = new MusicApp(queue);
+            Player.play();
+        });
+    });
+};
+//Play playlist
+const playPlaylist = () => {
+    const playlist = document.querySelectorAll(".playlist-component");
+    playlist.forEach(element => {
+        element.addEventListener("click", (e) => {
+            Player.stop();
+            document.querySelector(".libraryElements").style.height = "";
+            quePlaylist(e);
+        })
+    })
+}
+const quePlaylist = (e,queue = 0) => {
+    Player = new MusicApp(playlists[e.target.getAttribute("key")].songs, queue);
+    Player.play();
+    Player.song.onended = () => {
+        Player.stop();
+        if(queue +1 < playlists[e.target.getAttribute("key")].songs.length) {
+            queue++;
+            quePlaylist(e,queue);
+        }
     }
 };

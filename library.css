@@ -6,7 +6,8 @@
     scrollbar-width: none;  /* Firefox */
 }
 .libraryElements {
-    overflow: hidden;
+    overflow-y: scroll;
+    /*overflow: hidden;*/
     z-index: 100;
     margin-top: 80px;
     display: flex;
@@ -33,6 +34,11 @@
 }
 .songs {
     padding-bottom: 5px;
+    cursor: pointer;
+}
+.playlists {
+    padding-bottom: 5px;
+    cursor: pointer;
 }
 .playlist-container {
     overflow-y: scroll;
@@ -64,14 +70,17 @@
     width: 80px;
     height: 80px;
     object-fit: cover;
+    pointer-events: none;
 }
 .playlist-title {
     width: 200px;
     font-size: 30px;
+    pointer-events: none;
 }
 .playlist-counter {
     font-size: 20px;
     font-weight: bold;
+    pointer-events: none;
 }
 .addPlaylist {
     margin-top: 10px;
@@ -86,6 +95,64 @@
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.8);
 }
+/*playlist info*/
+.playlistInfo {
+    position: absolute;
+    width: 80%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+.playlistInfo > h1 {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    font-size: 150px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+}
+.playlistInfo > p {
+    font-size: 30px;
+    opacity: 0.7;
+    padding-bottom: 15px;
+    border-bottom: solid black 5px;
+}
+.playlistInfo-songsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 25px;
+    padding: 25px 0 25px 0;
+    width: 100%;
+    max-height: 60%;
+    overflow: auto;
+}
+.playlistInfo-songInfo {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 70%;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 2px rgba(192, 192, 192, 0.274);
+}
+.playlistInfo-songInfo > * {
+    width: 30%;
+    text-align: center;
+}
+.holder {
+    display: none;
+    justify-content: center;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+}
 @media only screen and (max-width: 1000px) {
     .library-types {
         width: 90%;
@@ -95,5 +162,14 @@
     }
     .hovered-element {
         width: 95%;
+    }
+    .playlistInfo {
+        width: 100%;
+    }
+    .playlistInfo-songInfo {
+        width: 100%;
+    }
+    .playlistInfo > h1 {
+        font-size: 50px;
     }
 }

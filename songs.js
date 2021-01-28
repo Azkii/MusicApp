@@ -9,7 +9,7 @@ const songs = [
     Seiin = {
         type: "song",
         name: "Darker Than Black",
-        author: "",
+        author: "Darker",
         url: "/music library/DarkerThanBlack/Darker.mp3",
         photo: "/music library/DarkerThanBlack/img.png",
     },
@@ -31,6 +31,8 @@ const playlists = [
         songs: [
             songs[0],
             songs[1],
+            songs[0],
+            
         ],
         photo: "",
     },

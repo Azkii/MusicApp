@@ -5,22 +5,23 @@ const volume = document.querySelector(".volume-range");
 const speakerIcon = document.querySelector(".speakerIcon");
 const backBtn = document.querySelector(".backButton");
 const skipBtn = document.querySelector(".skipButton");
+const title = document.querySelector(".music-title");
+const author = document.querySelector(".music-author");
 //player object
 class MusicApp {
-    constructor(song,circle) {
-        this.song = song;
+    constructor(song, queue = 0) {
+        this.songInQue = song[queue];
+        this.song = new Audio(this.songInQue.url);
         this.circle = circleContainer;
-        this.circle.src = circle;
+        this.circle.src = this.songInQue.photo;
+        title.innerHTML = this.songInQue.name;
+        author.innerHTML = this.songInQue.author;
         this.song.onended = () => {
-            //if one song on for
-            console.log("song ended");
-            this.play();
-            //this.stop();
-            //if no queue
-                //empty for now
-        };
+            this.stop();
+        }
     }
     play() {
+        console.log(this.song);
         this.song.play();
         this.currentTime();
         playButton.src = "/icons/pause.svg";
@@ -64,12 +65,11 @@ class MusicApp {
         },200)
     }
 }
-//////JUST TO TEST ON ONE SONG "LOAD"/////// will be replaced in future with object which contains playlist
-    //get data
-    let song = new Audio(songs[0].url);
-    let circleBcg = songs[0].photo;
     //assaign new song to a object
-    let Player = new MusicApp(song,circleBcg);
+    let Player
+    window.addEventListener("load",() => {
+        Player = new MusicApp(songs);
+    });
     // play or stop music
     playButton.addEventListener('click', () => {
         if(playButton.name === "play") {
