@@ -6,6 +6,7 @@ const libraryContainer = document.querySelector(".playlist-container");
 //section 2
 window.addEventListener("load", () => {
     pushSongsToLibrary();
+    songsBtn.style.borderBottom = "5px solid black";
 });
 libraryBtn.addEventListener("click", () => {
     const library = document.querySelector(".libraryElements");
@@ -174,7 +175,7 @@ const playSingle = () => {
             Player.stop();
             document.querySelector(".libraryElements").style.height = "";
             queue = [songs[e.target.getAttribute("key")]];
-            Player = new MusicApp(queue);
+            Player = new MusicApp(queue,0,e);
             Player.play();
         });
     });
@@ -189,15 +190,19 @@ const playPlaylist = () => {
             quePlaylist(e);
         })
     })
-}
+};
 const quePlaylist = (e,queue = 0) => {
-    Player = new MusicApp(playlists[e.target.getAttribute("key")].songs, queue);
+    Player = new MusicApp(playlists[e.target.getAttribute("key")].songs,queue,e);
     Player.play();
     Player.song.onended = () => {
         Player.stop();
-        if(queue +1 < playlists[e.target.getAttribute("key")].songs.length) {
+        if(queue + 1 < playlists[e.target.getAttribute("key")].songs.length) {
             queue++;
             quePlaylist(e,queue);
+        }
+        else {
+            showAlert("playlist starts again");
+            quePlaylist(e,queue = 0);
         }
     }
 };

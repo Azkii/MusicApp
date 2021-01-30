@@ -9,8 +9,11 @@ const title = document.querySelector(".music-title");
 const author = document.querySelector(".music-author");
 //player object
 class MusicApp {
-    constructor(song, queue = 0) {
-        this.songInQue = song[queue];
+    constructor(song,queueNum,e) {
+        this.e = e;
+        this.queue = queueNum;
+        //
+        this.songInQue = song[this.queue];
         this.song = new Audio(this.songInQue.url);
         this.circle = circleContainer;
         this.circle.src = this.songInQue.photo;
@@ -36,7 +39,22 @@ class MusicApp {
         this.circle.style.animationPlayState = "paused";
     }
     goBack() {
-        this.song.currentTime = 0;
+        if (this.song.currentTime < 2) {
+            if (this.queue === 0) {
+                showAlert("thats a first song");
+            }
+            else {
+                this.stop();
+                this.circle.style.animation = "";
+                setTimeout(() => {quePlaylist(this.e,this.queue-1)},0);
+            }
+        }
+        else {
+            this.stop();
+            this.circle.style.animation = "";
+            this.song.currentTime = 0;
+            setTimeout(() => {this.play()})
+        }
     }
     skip() {
         this.song.currentTime = this.song.duration;
@@ -68,7 +86,7 @@ class MusicApp {
     //assaign new song to a object
     let Player
     window.addEventListener("load",() => {
-        Player = new MusicApp(songs);
+        Player = new MusicApp(songs,0);
     });
     // play or stop music
     playButton.addEventListener('click', () => {
@@ -104,6 +122,7 @@ class MusicApp {
         speakerIcon.style.opacity = "";
     });
     //stop/start rotation manually
+    /*
     circleContainer.addEventListener("click", () => {
         const option = document.querySelector(".hoverCircle");
         if (option.children[0].name == "play") {
@@ -125,3 +144,4 @@ class MusicApp {
             },300)
         }
     });
+    */

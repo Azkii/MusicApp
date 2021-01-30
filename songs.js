@@ -13,6 +13,13 @@ const songs = [
         url: "/music library/DarkerThanBlack/Darker.mp3",
         photo: "/music library/DarkerThanBlack/img.png",
     },
+    KimiNoToriko = {
+        type: "song",
+        name: "Kimi no Toriko",
+        author: "Rizky Ayuba",
+        url: "/music library/KiminoToriko/Kimi No Toriko.mp3",
+        photo: "/music library/KiminoToriko/img.jpg",
+    }
 ];
 const playlists = [
     Abracadabra = {
@@ -31,8 +38,7 @@ const playlists = [
         songs: [
             songs[0],
             songs[1],
-            songs[0],
-            
+            songs[2],
         ],
         photo: "",
     },

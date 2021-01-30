@@ -149,6 +149,49 @@
     transition: 0.2s all ease-out;
     border-radius: 50px;
 }
+.alert {
+    transition: ease-in all 0.3s;
+    display: flex;
+    overflow: auto;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 0px;
+    background-color: rgb(253, 253, 253);
+    z-index: 200;
+}
+.alertText {
+    opacity: 0;
+    transition: all 0.2s;
+    padding-bottom: 10px;
+    border-bottom: 4px solid black;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 600px) {
     .volume {
         display: none;
