@@ -2,7 +2,7 @@
 const libraryBtn = document.querySelector(".library");
 const songsBtn = document.querySelector(".songs");
 const playlistsBtn = document.querySelector(".playlists");
-const libraryContainer = document.querySelector(".playlist-container");
+const libraryContainer = document.querySelector(".list-container");
 //section 2
 window.addEventListener("load", () => {
     pushSongsToLibrary();
@@ -54,16 +54,13 @@ const pushPlaylistsToLibrary = () => {
 const createShell = (Elementinfo,index) => {
     //creating box
     const songBox = document.createElement('div');
-    songBox.classList.add("playlist-component");
+    songBox.classList.add("songComp");
     //creating img
     const image = document.createElement('img');
-    image.classList.add("playlist-image");
     //creating title
     const title = document.createElement('h1');
-    title.classList.add("playlist-title");
     //creating counter
     const counter = document.createElement('p');
-    counter.classList.add("playlist-counter");
     //data
     if (Elementinfo.type === "song") {
         pushingSongs(Elementinfo,image,title,counter,songBox,index);
@@ -169,7 +166,7 @@ const openPlaylist = (e) => {
 };
 //Play single song
 const playSingle = () => {
-    const singleSong = document.querySelectorAll(".playlist-component");
+    const singleSong = document.querySelectorAll(".songComp");
     singleSong.forEach(element => {
         element.addEventListener("click", (e) => {
             Player.stop();
@@ -182,7 +179,7 @@ const playSingle = () => {
 };
 //Play playlist
 const playPlaylist = () => {
-    const playlist = document.querySelectorAll(".playlist-component");
+    const playlist = document.querySelectorAll(".songComp");
     playlist.forEach(element => {
         element.addEventListener("click", (e) => {
             Player.stop();

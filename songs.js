@@ -19,6 +19,13 @@ const songs = [
         author: "Rizky Ayuba",
         url: "/music library/KiminoToriko/Kimi No Toriko.mp3",
         photo: "/music library/KiminoToriko/img.jpg",
+    },
+    CertainRomance = {
+        type: "song",
+        name: "The Certain Romance",
+        author: "Arctic Monkeys",
+        url: "/music library/CertainRomance/CertainRomance.mp3",
+        photo: "/music library/CertainRomance/img.webp",
     }
 ];
 const playlists = [

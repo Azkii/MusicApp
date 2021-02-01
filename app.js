@@ -9,9 +9,9 @@ const title = document.querySelector(".music-title");
 const author = document.querySelector(".music-author");
 //player object
 class MusicApp {
-    constructor(song,queueNum,e) {
+    constructor(song,queue,e) {
         this.e = e;
-        this.queue = queueNum;
+        this.queue = queue;
         //
         this.songInQue = song[this.queue];
         this.song = new Audio(this.songInQue.url);

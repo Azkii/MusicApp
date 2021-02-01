@@ -1,0 +1,46 @@
+.heartBtn {
+    margin-top: 50px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.heart {
+    margin-left: 220px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.repeat {
+    margin-right: 220px;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+.heartBtn div img {
+    width: 35px;
+    height: 35px;
+}
+@keyframes heartAnim {
+    50% {
+        transform: translateY(-125px);
+    }
+    100% {
+        transform: translateY(20px);
+    }
+  }
+.animateHeart {
+    z-index: -1;
+    position: absolute;
+}
+.animateHeart img {
+    width: 280px;
+}

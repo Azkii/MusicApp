@@ -1,3 +1,4 @@
+const heartBtn = document.getElementsByName("heartBtn");
 showAlert = (text) => {
     const alertBox = document.querySelector(".alert");
     const alertText = alertBox.children[0];
@@ -9,3 +10,15 @@ showAlert = (text) => {
         alertBox.style.height = "0px";
     },1500);
 };
+heartBtn.forEach(element => {
+    element.addEventListener("click", () => {
+        const heartContainer = document.querySelector(".animateHeart");
+        const heart = document.createElement('img');
+        heart.src = "/icons/heart.svg";
+        heartContainer.appendChild(heart);
+        heart.style.animation = "heartAnim 1s";
+        document.addEventListener("animationend",() => {
+            heartContainer.innerHTML = "";
+        });
+    });
+});

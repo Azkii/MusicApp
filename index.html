@@ -6,6 +6,7 @@
     <title>MUSIC APP..</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="library.css">
+    <link rel="stylesheet" href="navBarToggle.css">
 </head>
 <body>
     <div class="alert">
@@ -23,12 +24,13 @@
                 <p class="songs clicked" name="songs">Songs</p>
                 <p class="playlists" name="playlists">Playlist</p>
             </div>
-            <div class="playlist-container">
+            <div class="list-container">
             </div>
         </section>
         <!--end-->
         <section class="player-section">
             <div class="circle-container">
+                <div class="animateHeart"></div>
                 <div class="hoverCircle">
                     <img class="stopRotation" name="play" alt="play/stop">
                 </div>
@@ -37,6 +39,14 @@
             <div class="music-info">
                 <h1 class="music-title">Seiin</h1>
                 <p class="music-author">Seiin</p>
+                <div class="heartBtn">
+                    <div class="heart">
+                        <img src="/icons/heart.svg" name="heartBtn" alt="heart">
+                    </div>
+                    <div class="repeat">
+                        <img src="/icons/repeat.svg" alt="repeat">
+                    </div>
+                </div>
             </div>
             <div class="player-interface">
                 <div class="player-controls">

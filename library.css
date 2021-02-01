@@ -7,7 +7,6 @@
 }
 .libraryElements {
     overflow-y: scroll;
-    /*overflow: hidden;*/
     z-index: 100;
     margin-top: 80px;
     display: flex;
@@ -16,7 +15,7 @@
     position: absolute;
     background-color: rgb(255, 255, 255);
     width: 100%;
-    /*height: calc(100% - 80px);*/
+    height: calc(100% - 80px);
     height: 0;
     transition: ease all 1s;
 }
@@ -24,13 +23,6 @@
     margin-top: 25px;
     font-size: 50px;
     margin-bottom: 25px;
-}
-.library-types {
-    display: flex;
-    width: 50%;
-    font-size: 30px;
-    font-weight: bold;
-    justify-content: space-around;
 }
 .songs {
     padding-bottom: 5px;
@@ -40,60 +32,93 @@
     padding-bottom: 5px;
     cursor: pointer;
 }
-.playlist-container {
-    overflow-y: scroll;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 50%;
+.library-types {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.playlist-component {
-    opacity: 0.9;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-    height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    border-bottom: solid rgba(0, 0, 0, 0.05) 3px;
-}
-.playlist-component:hover {
-    color: black;
-    opacity: 1;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-.playlist-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    pointer-events: none;
-}
-.playlist-title {
-    width: 200px;
+    width: 70%;
     font-size: 30px;
-    pointer-events: none;
-}
-.playlist-counter {
-    font-size: 20px;
     font-weight: bold;
-    pointer-events: none;
+    justify-content: space-around;
 }
-.addPlaylist {
-    margin-top: 10px;
-    margin-bottom: 50px;
-    color: white;
-    font-size: 50px;
+.list-container {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    width: 70%;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.songComp {
+    overflow: auto;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.8);
+    flex-direction: column;
+    margin: 10px;
+    width: 220px;
+    height: 350px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+.songComp:hover {
+    animation: shake 0.3s;
+}
+.songComp::after {
+    border: none;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-image: url(/icons/music.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+}
+.songComp::before {
+    border: none;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-image: url(/icons/heart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+}
+.songComp:hover:before {
+    transition: ease-in 0.6s;
+    transform: translateY(-150px) translateX(-80px) rotate(120deg) scale(0.4);
+    opacity: 0;
+}
+.songComp:hover::after {
+    transition: ease-in 0.6s;
+    transform: translateY(-80px) translateX(80px) rotate(30deg) scale(0.4);
+    opacity: 0;
+}
+.songComp img {
+    pointer-events: none;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.songComp h1 {
+    pointer-events: none;
+    opacity: 0.9;
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+.songComp p {
+    pointer-events: none;
+    font-size: 15px;
 }
 /*playlist info*/
 .playlistInfo {
@@ -157,8 +182,8 @@
     .library-types {
         width: 90%;
     }
-    .playlist-container {
-        width: 95%;
+    .list-container {
+        width: 100%;
     }
     .hovered-element {
         width: 95%;
@@ -171,5 +196,27 @@
     }
     .playlistInfo > h1 {
         font-size: 50px;
+    }
+    .songComp {
+        width: 180px;
+        height: 250px;
+    }
+    .songComp img {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .songComp {
+        width: 130px;
+        height: 250px;
+    }
+    .songComp img {
+        width: 130px;
+        height: 130px;
+    }
+    .songComp::before {
+        width: 130px;
+        height: 130px;
     }
 }
