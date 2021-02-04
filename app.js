@@ -23,6 +23,9 @@ class MusicApp {
         this.circle.src = this.songInQue.photo;
         title.innerHTML = this.songInQue.name;
         author.innerHTML = this.songInQue.author;
+        //song vlume at getting data
+        this.song.volume = volume.value/100;
+        //song on ended if single element was played
         this.song.onended = () => {
             this.stop();
         }
@@ -158,11 +161,10 @@ class MusicApp {
         }
     });
     */
-
-
 //time line settings
 timeLineInput.addEventListener("change",() => {
     Player.dropOnLine();
+    line.style.width = `${Player.song.currentTime/Player.song.duration * 100}%`;
 });
 timeLineContainer.addEventListener("mouseenter",() => {
     solidTimeLine.style.display = "none";
