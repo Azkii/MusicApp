@@ -7,6 +7,10 @@ const backBtn = document.querySelector(".backButton");
 const skipBtn = document.querySelector(".skipButton");
 const title = document.querySelector(".music-title");
 const author = document.querySelector(".music-author");
+//time line
+const timeLineInput = document.querySelector(".timeline-input");
+const solidTimeLine = document.querySelector(".timeLine");
+const timeLineContainer = document.querySelector(".timeline-box");
 //player object
 class MusicApp {
     constructor(song,queue,e) {
@@ -82,11 +86,20 @@ class MusicApp {
             console.log("*");
         },200)
     }
+    dropOnLine() {
+        const newValue = timeLineInput.value/100;
+        this.song.currentTime = this.song.duration * newValue;
+    }
+    changeTimeLineValue(value = 1) {
+        timeLineInput.value = value;
+        timeLineInput.style.background = 'linear-gradient(to right, black 0%, black ' + value + '%, transparent ' + value + '%, transparent 100%)';
+    }
 }
     //assaign new song to a object
     let Player
     window.addEventListener("load",() => {
         Player = new MusicApp(songs,0);
+        //Player.changeTimeLineValue();
     });
     // play or stop music
     playButton.addEventListener('click', () => {
@@ -145,3 +158,22 @@ class MusicApp {
         }
     });
     */
+
+
+//time line settings
+timeLineInput.addEventListener("change",() => {
+    Player.dropOnLine();
+});
+timeLineContainer.addEventListener("mouseenter",() => {
+    solidTimeLine.style.display = "none";
+    timeLineInput.style.display = "flex";
+    Player.changeTimeLineValue((Player.song.currentTime/Player.song.duration)*100);
+});
+timeLineContainer.addEventListener("mouseleave",() => {
+    timeLineInput.style.display = "none";
+    solidTimeLine.style.display = "flex";
+});
+timeLineInput.oninput = function() {
+    var value = (this.value-this.min)/(this.max-this.min)*100;
+    this.style.background = 'linear-gradient(to right, black 0%, black ' + value + '%, transparent ' + value + '%, transparent 100%)';
+};

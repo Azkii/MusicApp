@@ -29,6 +29,13 @@ const songs = [
     }
 ];
 const playlists = [
+    Favourite = {
+        type: "playlist",
+        name: "Favourite",
+        author: "MusicApp",
+        songs: [],
+        photo: "/icons/heart.svg",
+    },
     Abracadabra = {
         type: "playlist",
         name: "Abracadabra",
