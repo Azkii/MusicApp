@@ -16,8 +16,13 @@ class MusicApp {
     constructor(song,queue,e) {
         this.e = e;
         this.queue = queue;
-        //
-        this.songInQue = song[this.queue];
+        this.songArray = song;
+        this.songInQue = this.songArray[this.queue];
+        //check if song is in fav
+        this.fav = Array.from(new Set(returnData()));
+        this.isSongFav = this.fav.filter((value) => {
+            return value === this.songInQue;
+        });
         this.song = new Audio(this.songInQue.url);
         this.circle = circleContainer;
         this.circle.src = this.songInQue.photo;
@@ -31,7 +36,6 @@ class MusicApp {
         }
     }
     play() {
-        console.log(this.song);
         this.song.play();
         this.currentTime();
         playButton.src = "/icons/pause.svg";
@@ -86,7 +90,7 @@ class MusicApp {
     currentTime() {
         this.stopInterval = setInterval(() => {
             line.style.width = `${this.song.currentTime/this.song.duration * 100}%`;
-            console.log("*");
+            //console.log("*");
         },200)
     }
     dropOnLine() {
@@ -97,12 +101,58 @@ class MusicApp {
         timeLineInput.value = value;
         timeLineInput.style.background = 'linear-gradient(to right, black 0%, black ' + value + '%, transparent ' + value + '%, transparent 100%)';
     }
+    //check if song is in fav
+    IsSongInFav() {
+        if(this.e.target.getAttribute("name") === "playlistOpen") {
+            if(this.isSongFav[0] === this.songInQue) {
+                this.deleteFavourite();
+                this.stop();
+                quePlaylist(this.e,this.queue);
+            }
+            else {
+                this.addFavourite();
+                this.stop();
+                quePlaylist(this.e,this.queue);
+            }
+        }
+        else {
+            if(this.isSongFav[0] === this.songInQue) {
+                this.deleteFavourite();
+                this.stop();
+                queSingleSong(this.e);
+                console.log("passed");
+            }
+            else {
+                this.addFavourite();
+                this.stop();
+                queSingleSong(this.e);
+                console.log("passed too");
+            }
+        }
+    }
+    //Add to favourite
+    addFavourite() {
+        console.log("ADD your song to fav");
+        const index = songs.findIndex(x => x.name === this.songInQue.name)
+        let favSongs = localStorage.getItem("favSongs");
+        favSongs = favSongs.split(",");
+        favSongs.push(JSON.stringify(index));
+        localStorage.setItem("favSongs", favSongs);
+    }
+    deleteFavourite() {
+        const index = songs.findIndex(x => x.name === this.songInQue.name);
+        let favLocal = localStorage.favSongs.split(",");
+        const separatedData = favLocal.filter((item) => {
+            return item != index
+        })
+        localStorage.setItem("favSongs", separatedData);
+        console.log("deleted from favSongs");
+    }
 }
     //assaign new song to a object
     let Player
     window.addEventListener("load",() => {
         Player = new MusicApp(songs,0);
-        //Player.changeTimeLineValue();
     });
     // play or stop music
     playButton.addEventListener('click', () => {

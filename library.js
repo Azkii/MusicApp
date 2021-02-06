@@ -76,6 +76,7 @@ const createShell = (Elementinfo,index) => {
 };
 const pushingSongs = (songInfo,image,title,counter,songBox,index) => {
     //applying data
+    songBox.setAttribute("name","songOpen");
     songBox.setAttribute("key",index);
     title.innerHTML = songInfo.name;
     image.src = songInfo.photo;
@@ -171,12 +172,15 @@ const playSingle = () => {
         element.addEventListener("click", (e) => {
             Player.stop();
             document.querySelector(".libraryElements").style.height = "";
-            queue = [songs[e.target.getAttribute("key")]];
-            Player = new MusicApp(queue,0,e);
-            Player.play();
+            queSingleSong(e);
         });
     });
 };
+const queSingleSong = (e) => {
+    queue = [songs[e.target.getAttribute("key")]];
+    Player = new MusicApp(queue,0,e);
+    Player.play();
+}
 //Play playlist
 const playPlaylist = () => {
     const playlist = document.querySelectorAll(".songComp");

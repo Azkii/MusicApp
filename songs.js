@@ -6,7 +6,7 @@ const songs = [
         url: "/music library/Seiin/Seiin.mp3",
         photo: "/music library/Seiin/img.jpg",
     },
-    Seiin = {
+    DarkerThanBlack = {
         type: "song",
         name: "Darker Than Black",
         author: "Darker",
@@ -28,12 +28,37 @@ const songs = [
         photo: "/music library/CertainRomance/img.webp",
     }
 ];
-const playlists = [
+//creating local storages
+const localStorgeExist = () => {
+    localFav = localStorage.getItem("favSongs");
+    if(!localFav) {
+        localStorage.setItem('favSongs',[]);
+    }
+    else {
+        console.log("completed checking existance");
+    }
+};
+const applyDataArray = (localData) => {
+    let [...rest] = localData;
+    rest.forEach((element,index,object) => object[index] = songs[element]);
+    return rest = rest.filter(value => {
+        return value !== undefined;
+    });
+};
+//get data from localstorage
+const returnData = () => {
+    localStorgeExist();
+    let localData = localStorage.getItem("favSongs"); 
+    localData = localData.split(",");
+    return localData = applyDataArray(localData);
+}
+//and return
+let playlists = [
     Favourite = {
         type: "playlist",
         name: "Favourite",
         author: "MusicApp",
-        songs: [],
+        songs: returnData(),
         photo: "/icons/heart.svg",
     },
     Abracadabra = {

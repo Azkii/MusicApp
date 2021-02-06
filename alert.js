@@ -11,7 +11,9 @@ showAlert = (text) => {
     },1500);
 };
 heartBtn.forEach(element => {
-    element.addEventListener("click", () => {
+    element.addEventListener("click", (e) => {
+        e.preventDefault();
+        Player.IsSongInFav();
         const heartContainer = document.querySelector(".animateHeart");
         const heart = document.createElement('img');
         heart.src = "/icons/heart.svg";
@@ -20,5 +22,6 @@ heartBtn.forEach(element => {
         document.addEventListener("animationend",() => {
             heartContainer.innerHTML = "";
         });
+        playlists[0].songs = returnData();
     });
 });
