@@ -176,9 +176,9 @@ const playSingle = () => {
         });
     });
 };
-const queSingleSong = (e) => {
+const queSingleSong = (e,timeStart) => {
     queue = [songs[e.target.getAttribute("key")]];
-    Player = new MusicApp(queue,0,e);
+    Player = new MusicApp(queue,0,e,timeStart);
     Player.play();
 }
 //Play playlist
@@ -192,8 +192,8 @@ const playPlaylist = () => {
         })
     })
 };
-const quePlaylist = (e,queue = 0) => {
-    Player = new MusicApp(playlists[e.target.getAttribute("key")].songs,queue,e);
+const quePlaylist = (e,queue = 0,timeStart) => {
+    Player = new MusicApp(playlists[e.target.getAttribute("key")].songs,queue,e,timeStart);
     Player.play();
     Player.song.onended = () => {
         Player.stop();

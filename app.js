@@ -11,19 +11,26 @@ const author = document.querySelector(".music-author");
 const timeLineInput = document.querySelector(".timeline-input");
 const solidTimeLine = document.querySelector(".timeLine");
 const timeLineContainer = document.querySelector(".timeline-box");
+//get heartIMG
+const heartImage = document.getElementsByName("heartBtn");
 //player object
 class MusicApp {
-    constructor(song,queue,e) {
+    constructor(song,queue,e,timeStart = 0) {
         this.e = e;
         this.queue = queue;
         this.songArray = song;
+        this.timeStart = timeStart;
         this.songInQue = this.songArray[this.queue];
         //check if song is in fav
         this.fav = Array.from(new Set(returnData()));
         this.isSongFav = this.fav.filter((value) => {
             return value === this.songInQue;
         });
+        //change heart sign
+        this.heartImg = (this.isSongFav[0] === this.songInQue) ? "/icons/unheart.svg" : "/icons/heart.svg";
+        heartBtn[0].src = this.heartImg;
         this.song = new Audio(this.songInQue.url);
+        this.song.currentTime = this.timeStart;
         this.circle = circleContainer;
         this.circle.src = this.songInQue.photo;
         title.innerHTML = this.songInQue.name;
@@ -107,26 +114,24 @@ class MusicApp {
             if(this.isSongFav[0] === this.songInQue) {
                 this.deleteFavourite();
                 this.stop();
-                quePlaylist(this.e,this.queue);
+                quePlaylist(this.e,this.queue,this.song.currentTime);
             }
             else {
                 this.addFavourite();
                 this.stop();
-                quePlaylist(this.e,this.queue);
+                quePlaylist(this.e,this.queue,this.song.currentTime);
             }
         }
         else {
             if(this.isSongFav[0] === this.songInQue) {
                 this.deleteFavourite();
                 this.stop();
-                queSingleSong(this.e);
-                console.log("passed");
+                queSingleSong(this.e,this.song.currentTime);
             }
             else {
                 this.addFavourite();
                 this.stop();
-                queSingleSong(this.e);
-                console.log("passed too");
+                queSingleSong(this.e,this.song.currentTime);
             }
         }
     }
