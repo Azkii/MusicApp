@@ -232,5 +232,5 @@ timeLineContainer.addEventListener("mouseleave",() => {
 });
 timeLineInput.oninput = function() {
     var value = (this.value-this.min)/(this.max-this.min)*100;
-    this.style.background = 'linear-gradient(to right, black 0%, black ' + value + '%, transparent ' + value + '%, transparent 100%)';
+    this.style.background = 'linear-gradient(to right, var(--second) 0%,  var(--second) ' + value + '%, transparent ' + value + '%, transparent 100%)';
 };
