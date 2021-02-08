@@ -1,4 +1,5 @@
 const heartBtn = document.getElementsByName("heartBtn");
+const darkModeBtn = document.querySelector(".darkMode");
 showAlert = (text) => {
     const alertBox = document.querySelector(".alert");
     const alertText = alertBox.children[0];
@@ -25,3 +26,14 @@ heartBtn.forEach(element => {
         playlists[0].songs = returnData();
     });
 });
+darkModeBtn.addEventListener("click", () => {
+    const lightMode = ["white","black","black"];
+    const darkMode = ["#111111","#FF7597","pink"];
+    (getComputedStyle(document.documentElement).getPropertyValue("--base") == lightMode[0]) ?
+    setColorMode(darkMode) : setColorMode(lightMode);
+})
+const setColorMode = (mode) => {
+    darkModeBtn.src = `/icons/${mode[2]}Moon.svg`;
+    document.documentElement.style.setProperty(`--base`,mode[0]);
+    document.documentElement.style.setProperty(`--second`,mode[1]);
+}

@@ -97,7 +97,7 @@ class MusicApp {
     currentTime() {
         this.stopInterval = setInterval(() => {
             line.style.width = `${this.song.currentTime/this.song.duration * 100}%`;
-            //console.log("*");
+            console.log("*");
         },200)
     }
     dropOnLine() {
@@ -106,7 +106,7 @@ class MusicApp {
     }
     changeTimeLineValue(value = 1) {
         timeLineInput.value = value;
-        timeLineInput.style.background = 'linear-gradient(to right, black 0%, black ' + value + '%, transparent ' + value + '%, transparent 100%)';
+        timeLineInput.style.background = 'linear-gradient(to right, var(--second) 0%, var(--second) ' + value + '%, transparent ' + value + '%, transparent 100%)';
     }
     //check if song is in fav
     IsSongInFav() {

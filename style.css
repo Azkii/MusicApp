@@ -4,6 +4,10 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+:root {
+    --base: white;
+    --second: black;
+}
 @keyframes rotation {
     from {
             -webkit-transform: rotate(0deg);
@@ -11,6 +15,18 @@
     to {
             -webkit-transform: rotate(359deg);
     }
+}
+@keyframes moonDrop {
+    from {
+        -webkit-transform: translateY(-200px);
+    }
+    to {
+        -webkit-transform: translateY(0);
+    }
+}
+html {
+    color: var(--second);
+    background-color: var(--base);
 }
 .app-article {
     display: flex;
@@ -28,14 +44,29 @@
 }
 .type {
     font-size: 30px;
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid var(--second);
 }
 .library {
     font-size: 25px;
     padding: 6px;
-    border: black 3px solid;
+    border: var(--second) 3px solid;
     cursor: pointer;
 }
+/*test area*/
+.darkMode {
+    position: absolute;
+    margin-top: 125px;
+    margin-left: 10px;
+    width: 60px;
+    padding: 10px;
+    transition: all ease-in 0.5s;
+    animation: moonDrop 2s;
+}
+.darkMode:hover {
+    transition: all ease-in 0.1s;
+    transform: rotate(-80deg);
+}
+/*end of test area*/
 .player-section {
     min-height: 80vh;
     display: flex;
@@ -51,7 +82,7 @@
 }
 .circle {
     object-fit: cover;
-    background-color: black;
+    background-color: var(--second);
     border-radius: 50%;
     width: 350px;
     height: 350px;
@@ -62,7 +93,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.061);
+    background-color: var(--base);
     width: 350px;
     height: 350px;
     border-radius: 50%;
@@ -124,7 +155,7 @@
     z-index: 100;
     display: none;
     -webkit-appearance: none;
-    background: black;
+    background: var(--second);
     border-radius: 100px;
     height: 5px;
     width: 120px;
@@ -138,12 +169,6 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-}
-.test {
-    display: flex;
-    background-color: gray;
-    width: 80%;
-    height: 10px;
 }
 .alert {
     transition: ease-in all 0.3s;
@@ -161,7 +186,7 @@
     opacity: 0;
     transition: all 0.2s;
     padding-bottom: 10px;
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid var(--second);
     font-size: 22px;
     font-weight: bold;
 }
@@ -174,8 +199,11 @@
         width: 300px;
         height: 300px;
     }
+    .darkMode {
+        margin-top: 60px;
+    }
+    
 }
-/*Test area*/
 .timeline-box {
     width: 100vw;
     height: 30px;
@@ -184,7 +212,7 @@
     z-index: 1;
     position: absolute;
     align-self: flex-start;
-    background-color: black;
+    background-color: var(--second);
     height: 10px;
     width: 0%;
     transition: 0.2s all ease-out;
@@ -197,7 +225,7 @@
     -webkit-appearance: none;
     width: 100%;
     height: 10px;
-    background: #000000;
+    background: var(--second);
     border-radius: 50px;
     outline: none;
 }

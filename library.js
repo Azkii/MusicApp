@@ -6,7 +6,7 @@ const libraryContainer = document.querySelector(".list-container");
 //section 2
 window.addEventListener("load", () => {
     pushSongsToLibrary();
-    songsBtn.style.borderBottom = "5px solid black";
+    songsBtn.style.borderBottom = "5px solid var(--second)";
 });
 libraryBtn.addEventListener("click", () => {
     const library = document.querySelector(".libraryElements");
@@ -113,13 +113,13 @@ const checkBtn = (e) => {
     if(e.target.getAttribute("name") === "songs") {
         playlistsBtn.classList.remove("clicked");
         songsBtn.classList.add("clicked");
-        songsBtn.style.borderBottom = "5px solid black";
+        songsBtn.style.borderBottom = "5px solid var(--second)";
         playlistsBtn.style.borderBottom = "";
     }
     else if (e.target.getAttribute("name") === "playlists") {
         songsBtn.classList.remove("clicked");
         playlistsBtn.classList.add("clicked");
-        playlistsBtn.style.borderBottom = "5px solid black";
+        playlistsBtn.style.borderBottom = "5px solid var(--second)";
         songsBtn.style.borderBottom = "";
     }
 };
