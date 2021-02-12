@@ -80,18 +80,20 @@ class MusicApp {
         clearInterval(this.stopInterval);
     }
     volumeSetting() {
+        const colorMode = (getComputedStyle(document.documentElement).getPropertyValue("--base") == " white") ? "light" : "dark";
         this.song.volume = volume.value/100;
         if(+volume.value === 0) {
-            speakerIcon.src = "icons/volume/volume0.svg";
+            console.log(colorMode);
+            speakerIcon.src = `icons/volume/volume0${colorMode}.svg`;
         }
         else if(+volume.value < 33) {
-            speakerIcon.src = "icons/volume/volume1.svg";
+            speakerIcon.src = `icons/volume/volume1${colorMode}.svg`;
         }
         else if(+volume.value < 66) {
-            speakerIcon.src = "icons/volume/volume2.svg";
+            speakerIcon.src = `icons/volume/volume2${colorMode}.svg`;
         }
         else {
-            speakerIcon.src = "icons/volume/volume3.svg";
+            speakerIcon.src = `icons/volume/volume3${colorMode}.svg`;
         }
     }
     currentTime() {
@@ -192,30 +194,6 @@ class MusicApp {
         volume.style.display = "";
         speakerIcon.style.opacity = "";
     });
-    //stop/start rotation manually
-    /*
-    circleContainer.addEventListener("click", () => {
-        const option = document.querySelector(".hoverCircle");
-        if (option.children[0].name == "play") {
-            Player.circle.style.animation = "";
-            option.children[0].src = "/icons/pause.svg";
-            option.children[0].name = "pause";
-            option.style.display = "flex";
-            setTimeout(() => {
-                option.style.display = "";
-            },300)
-        }
-        else {
-            Player.circle.style.animation = `rotation 20s infinite linear`;
-            option.children[0].src = "/icons/play.svg";
-            option.children[0].name = "play";
-            option.style.display = "flex";
-            setTimeout(() => {
-                option.style.display = "";
-            },300)
-        }
-    });
-    */
 //time line settings
 timeLineInput.addEventListener("change",() => {
     Player.dropOnLine();

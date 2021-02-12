@@ -27,8 +27,8 @@ heartBtn.forEach(element => {
     });
 });
 darkModeBtn.addEventListener("click", () => {
-    const lightMode = ["white","black","black"];
-    const darkMode = ["#111111","#FF7597","pink"];
+    const lightMode = ["white","black","black","rgb(253, 253, 253)"];
+    const darkMode = ["#111111","#FF7597","pink","#1f1f1f"];
     (getComputedStyle(document.documentElement).getPropertyValue("--base") == lightMode[0]) ?
     setColorMode(darkMode) : setColorMode(lightMode);
 })
@@ -36,4 +36,5 @@ const setColorMode = (mode) => {
     darkModeBtn.src = `/icons/${mode[2]}Moon.svg`;
     document.documentElement.style.setProperty(`--base`,mode[0]);
     document.documentElement.style.setProperty(`--second`,mode[1]);
+    document.documentElement.style.setProperty(`--alert`,mode[3]);
 }
