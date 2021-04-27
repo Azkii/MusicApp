@@ -83,7 +83,6 @@ class MusicApp {
         const colorMode = (getComputedStyle(document.documentElement).getPropertyValue("--base") == " white") ? "light" : "dark";
         this.song.volume = volume.value/100;
         if(+volume.value === 0) {
-            console.log(colorMode);
             speakerIcon.src = `icons/volume/volume0${colorMode}.svg`;
         }
         else if(+volume.value < 33) {

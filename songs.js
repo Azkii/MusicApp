@@ -63,7 +63,7 @@ let playlists = [
     },
     Abracadabra = {
         type: "playlist",
-        name: "Abracadabra",
+        name: "Playlist 1",
         author: "MusicApp",
         songs: [
             songs[0],
@@ -72,7 +72,7 @@ let playlists = [
     },
     Lore = {
         type: "playlist",
-        name: "Lore",
+        name: "Playlist 2",
         author: "MusicApp",
         songs: [
             songs[0],
@@ -83,7 +83,7 @@ let playlists = [
     },
     Seiin = {
         type: "playlist",
-        name: "Seiin",
+        name: "Playlist 3",
         author: "MusicApp",
         songs: [
             songs[1],
